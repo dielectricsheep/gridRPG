@@ -1,0 +1,75 @@
+<html>
+<head>
+  <style>
+  body {
+    background-color: #434687;
+    color: white;
+  }
+  .h2 {
+    font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",sans-serif;
+  }
+  #rpg_window_wrapper {
+    position: relative;
+    width: 736px ;
+    margin-left: auto ;
+    margin-right: auto ; 
+  }
+  </style>
+  <script src="/lib/RPGObject.js"></script>
+  <script src="/lib/RPGData.js"></script>
+  <script>
+
+    var divRpgWindowWrapper;
+
+    function onloadBody() {
+      divRpgWindowWrapper = document.getElementById('rpg_window_wrapper'); 
+      
+      var myRpg = new Rpg(divRpgWindowWrapper);
+      myRpg.addMap(mapObject, 'default');
+      myRpg.addPlayer(wizardObject, 'default');
+
+      window.onkeydown = function(event){
+        switch(event.keyCode){
+          case 38:
+            divRpgWindowWrapper.dispatchEvent(myRpg.events.setWalkUp);
+          break;
+          case 39:
+            divRpgWindowWrapper.dispatchEvent(myRpg.events.setWalkRight);
+          break;
+          case 40:
+            divRpgWindowWrapper.dispatchEvent(myRpg.events.setWalkDown);
+          break;
+          case 37:
+            divRpgWindowWrapper.dispatchEvent(myRpg.events.setWalkLeft);
+          break;
+        };
+      };
+      window.onkeyup = function(event){
+        switch(event.keyCode){
+          case 38:
+            divRpgWindowWrapper.dispatchEvent(myRpg.events.clearWalkUp);
+          break;
+          case 39:
+            divRpgWindowWrapper.dispatchEvent(myRpg.events.clearWalkRight);
+          break;
+          case 40:
+            divRpgWindowWrapper.dispatchEvent(myRpg.events.clearWalkDown);
+          break;
+          case 37:
+            divRpgWindowWrapper.dispatchEvent(myRpg.events.clearWalkLeft);
+          break;
+        };
+      };
+    };
+</script>
+<title>dielectricsheep Javascript RPG Engine Demo</title>
+</head>
+
+<body onload="onloadBody()">
+  <center>
+    <a href="http://dielectricsheep.com"><img src=http://dielectricsheep.com/wp-content/uploads/2013/01/dielectricsheep_title_banner_long.png /></a>
+    <h2>HTML5/Javascript RPG Engine Demo</h2>
+  </center>
+  <div id="rpg_window_wrapper" />
+</body>
+</html>
