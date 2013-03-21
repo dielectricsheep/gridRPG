@@ -15,8 +15,8 @@
     margin-right: auto ; 
   }
   </style>
-  <script src="/lib/RPGObject.js"></script>
-  <script src="/lib/RPGData.js"></script>
+  <script src="lib/RPGObject.js"></script>
+  <script src="lib/RPGData.js"></script>
   <script>
 
     var divRpgWindowWrapper;
@@ -24,39 +24,37 @@
     function onloadBody() {
       divRpgWindowWrapper = document.getElementById('rpg_window_wrapper'); 
       
-      var myRpg = new Rpg(divRpgWindowWrapper);
-      myRpg.addMap(mapObject, 'default');
-      myRpg.addPlayer(wizardObject, 'default');
+      RPGModule.init(playerData, rpgData, divRpgWindowWrapper);
 
       window.onkeydown = function(event){
         switch(event.keyCode){
           case 38:
-            divRpgWindowWrapper.dispatchEvent(myRpg.events.setWalkUp);
+            RPGModule.setKeyPress('up');
           break;
           case 39:
-            divRpgWindowWrapper.dispatchEvent(myRpg.events.setWalkRight);
+            RPGModule.setKeyPress('right');
           break;
           case 40:
-            divRpgWindowWrapper.dispatchEvent(myRpg.events.setWalkDown);
+            RPGModule.setKeyPress('down');
           break;
           case 37:
-            divRpgWindowWrapper.dispatchEvent(myRpg.events.setWalkLeft);
+            RPGModule.setKeyPress('left');
           break;
         };
       };
       window.onkeyup = function(event){
         switch(event.keyCode){
           case 38:
-            divRpgWindowWrapper.dispatchEvent(myRpg.events.clearWalkUp);
+            RPGModule.setKeyPress(null);
           break;
           case 39:
-            divRpgWindowWrapper.dispatchEvent(myRpg.events.clearWalkRight);
+            RPGModule.setKeyPress(null);
           break;
           case 40:
-            divRpgWindowWrapper.dispatchEvent(myRpg.events.clearWalkDown);
+            RPGModule.setKeyPress(null);
           break;
           case 37:
-            divRpgWindowWrapper.dispatchEvent(myRpg.events.clearWalkLeft);
+            RPGModule.setKeyPress(null);
           break;
         };
       };
